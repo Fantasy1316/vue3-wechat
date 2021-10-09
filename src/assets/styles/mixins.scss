@@ -1,0 +1,21 @@
+@mixin container($color: '#fff') {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  background-color: $color;
+}
+
+@mixin avatar($width, $height, $radius) {
+  width: $width;
+  height: $height;
+  border-radius: $radius;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
