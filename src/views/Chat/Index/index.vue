@@ -161,6 +161,7 @@ export default {
         align-items: center;
         padding: 14px;
         box-sizing: border-box;
+        user-select: none;
 
         &_active {
           background-color: #dedede;

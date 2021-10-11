@@ -42,7 +42,8 @@ export default {
     &_item {
       padding: 4px 16px;
       font-size: 14px;
-      columns: #333;
+      color: #333;
+      user-select: none;
 
       &:hover {
         color: #fff;
