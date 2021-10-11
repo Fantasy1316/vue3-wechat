@@ -19,3 +19,9 @@
     height: 100%;
   }
 }
+
+@mixin lineWrap {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
