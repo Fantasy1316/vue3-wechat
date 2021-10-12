@@ -43,7 +43,8 @@ export default {
     &_item {
       padding: 2px 20px;
       font-size: 14px;
-      columns: #333;
+      color: #333;
+      user-select: none;
 
       &:hover {
         color: #fff;
