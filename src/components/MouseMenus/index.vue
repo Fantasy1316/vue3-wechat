@@ -1,19 +1,21 @@
 <template>
-  <div
-    class="mouse-menus"
-    :style="{ top: top + 'px', left: left + 'px' }"
-    v-show="show"
-  >
-    <ul class="mouse-menus--list">
-      <li class="mouse-menus--list_item">置顶</li>
-      <li class="mouse-menus--list_item">标为未读</li>
-      <li class="mouse-menus--list_item">消息免打扰</li>
-      <li class="mouse-menus--list_item">查看详细资料</li>
-      <li class="mouse-menus--list_line"></li>
-      <li class="mouse-menus--list_item">不显示</li>
-      <li class="mouse-menus--list_item">删除</li>
-    </ul>
-  </div>
+  <transition name="fade">
+    <div
+      class="mouse-menus"
+      :style="{ top: top + 'px', left: left + 'px' }"
+      v-show="show"
+    >
+      <ul class="mouse-menus--list">
+        <li class="mouse-menus--list_item">置顶</li>
+        <li class="mouse-menus--list_item">标为未读</li>
+        <li class="mouse-menus--list_item">消息免打扰</li>
+        <li class="mouse-menus--list_item">查看详细资料</li>
+        <li class="mouse-menus--list_line"></li>
+        <li class="mouse-menus--list_item">不显示</li>
+        <li class="mouse-menus--list_item">删除</li>
+      </ul>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -58,5 +60,15 @@ export default {
       border-bottom: 1px solid #e6e6e6;
     }
   }
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
 }
 </style>

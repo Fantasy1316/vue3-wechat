@@ -65,7 +65,7 @@ export default {
 
     .icon-more {
       font-size: 28px;
-      color: 121212;
+      color: #323232;
     }
   }
 

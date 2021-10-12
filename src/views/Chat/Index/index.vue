@@ -3,9 +3,7 @@
     <div class="chat-index--list">
       <div class="list-search">
         <search class="list-search--search" />
-        <div class="list-search--btn">
-          <i class="iconfont icon-tianjia"></i>
-        </div>
+        <launch-group />
       </div>
       <div id="listChat" class="list-chat">
         <div
@@ -44,6 +42,7 @@ import axios from 'axios'
 import { onMounted, reactive, toRefs, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import Search from '@/components/Search'
+import LaunchGroup from '@/components/LaunchGruop'
 import MouseMenus from '@/components/MouseMenus'
 
 export default {
@@ -51,6 +50,7 @@ export default {
   components: {
     Search,
     MouseMenus,
+    LaunchGroup,
   },
   setup() {
     const router = useRouter()
@@ -143,22 +143,7 @@ export default {
 
       &--search {
         flex: 1;
-      }
-
-      &--btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 26px;
-        height: 24px;
-        margin-left: 10px;
-        background-color: #eaeaea;
-        border-radius: 3px;
-
-        .iconfont {
-          font-size: 16px;
-          color: #afafaf;
-        }
+        margin-right: 10px;
       }
     }
 
