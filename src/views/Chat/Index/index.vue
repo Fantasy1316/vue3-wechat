@@ -7,7 +7,7 @@
           <i class="iconfont icon-tianjia"></i>
         </div>
       </div>
-      <div class="list-chat">
+      <div id="listChat" class="list-chat">
         <div
           class="list-chat--item"
           v-for="item in list"
@@ -35,13 +35,13 @@
     </div>
 
     <!-- 鼠标右键 -->
-    <mouse-menus :top="top" :left="left" :show="show" />
+    <mouse-menus v-model:show="show" :top="top" :left="left" />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import { onMounted, reactive, toRefs } from 'vue'
+import { onMounted, reactive, toRefs, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import Search from '@/components/Search'
 import MouseMenus from '@/components/MouseMenus'
@@ -76,10 +76,7 @@ export default {
     }
 
     const handleChatItemClick = (id) => {
-      // 取消鼠标右键选中
-      state.mouseActive = 0
       state.show = false
-
       state.active = id
       router.push(`${id}`)
     }
@@ -93,21 +90,35 @@ export default {
       document.oncontextmenu = () => false
     }
 
+    const handleChatListScroll = () => {
+      let list = document.querySelector('#listChat')
+      // 监听鼠标滚轮滚动
+      list.addEventListener('mousewheel', (e) => {
+        if (state.show) e.preventDefault()
+      })
+      // 监听键盘上下键 上: 38 下: 40
+      window.addEventListener('keydown', (e) => {
+        if (state.show) e.preventDefault()
+      })
+    }
+
+    watch(
+      () => state.show,
+      (show) => {
+        if (!show) state.mouseActive = 0
+      }
+    )
+
     onMounted(() => {
+      handleChatListScroll()
       getChatList()
     })
 
-    const { active, mouseActive, list, top, left, show } = toRefs(state)
-
     return {
-      active,
-      mouseActive,
-      list,
-      top,
-      left,
-      show,
+      ...toRefs(state),
       handleChatItemClick,
       handleItemRightClick,
+      handleChatListScroll,
     }
   },
 }

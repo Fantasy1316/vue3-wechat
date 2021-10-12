@@ -33,14 +33,15 @@ export default {
 <style lang="scss" scoped>
 .mouse-menus {
   position: absolute;
-  padding: 6px 0;
-  background-color: #fff;
-  border: 1px solid #ededed;
+  padding: 5px 0;
+  background-color: #f3f3f3;
+  border: 1px solid #e2e2e2;
   border-radius: 5px;
+  box-shadow: 0px 5px 8px 0px rgba(117, 117, 117, 0.6);
 
   &--list {
     &_item {
-      padding: 4px 16px;
+      padding: 2px 20px;
       font-size: 14px;
       columns: #333;
 
@@ -53,7 +54,7 @@ export default {
     &_line {
       padding-top: 6px;
       margin-bottom: 6px;
-      border-bottom: 1px solid #ececec;
+      border-bottom: 1px solid #e6e6e6;
     }
   }
 }
