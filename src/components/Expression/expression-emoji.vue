@@ -14,15 +14,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="emoji-indicator">
-      <i
-        class="iconfont icon-yuandianxiao"
-        :class="{ 'icon-yuandianxiao--active': index === currentIndex }"
-        v-for="(item, index) in emojiGroupCount"
-        :key="index"
-        @click.stop="currentIndex = index"
-      ></i>
-    </div> -->
   </div>
 </template>
 
@@ -107,19 +98,6 @@ export default {
           user-select: none;
           -webkit-user-drag: none;
         }
-      }
-    }
-  }
-
-  .emoji-indicator {
-    text-align: center;
-
-    .icon-yuandianxiao {
-      font-size: 18px;
-      color: #e2e2e2;
-
-      &--active {
-        color: #a6a6a6;
       }
     }
   }

@@ -25,7 +25,7 @@
           :class="{ 'types-item--active': currentType === index }"
           v-for="(item, index) in types"
           :key="index"
-          @click.stop="handleChangeType(index)"
+          @click="handleChangeType(index)"
         >
           <i class="iconfont" :class="item"></i>
         </div>
