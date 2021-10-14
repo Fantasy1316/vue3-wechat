@@ -18,7 +18,11 @@
             <expression v-model:expressionShow="show" />
           </i>
           <i class="iconfont icon-iconset0196" title="附件"></i>
-          <i class="iconfont icon-ziyuan" title="截图"></i>
+          <i
+            class="iconfont icon-ziyuan"
+            title="截图"
+            @click="screenshotStatus = true"
+          ></i>
           <i class="iconfont icon-xiaoxi" title="查找聊天内容"></i>
         </p>
         <p class="input-funs--item">
@@ -29,6 +33,13 @@
       <div id="inputEdit" class="input-edit" contenteditable></div>
     </div>
   </div>
+
+  <!--截图组件-->
+  <screen-short
+    v-if="screenshotStatus"
+    @destroy-component="destroyComponent"
+    @get-image-data="getImg"
+  ></screen-short>
 </template>
 
 <script>
@@ -42,9 +53,19 @@ export default {
   setup() {
     const state = reactive({
       show: false,
+      screenshotStatus: false,
     })
     const getInputEditFocus = () => {
       document.querySelector('#inputEdit').focus()
+    }
+
+    // 销毁组件函数
+    const destroyComponent = (status) => {
+      state.screenshotStatus = status
+    }
+    // 获取裁剪区域图片信息
+    const getImg = (base64) => {
+      console.log('截图组件传递的图片信息', base64)
     }
 
     onMounted(() => {
@@ -54,6 +75,8 @@ export default {
     return {
       ...toRefs(state),
       getInputEditFocus,
+      destroyComponent,
+      getImg,
     }
   },
 }
