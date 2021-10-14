@@ -59,7 +59,7 @@
             </div>
           </div>
           <div class="content-right--buttons">
-            <button class="button button-cancel" @click="show = false">
+            <button class="button button-cancel" @click="handleCancel">
               取消
             </button>
             <button
@@ -89,6 +89,7 @@ export default {
       show: false,
       list: [],
       selectedIdList: [],
+      currentId: null,
     })
 
     const selectedList = computed(() => {
@@ -122,6 +123,11 @@ export default {
       }
     }
 
+    const handleCancel = () => {
+      state.show = false
+      state.selectedIdList = []
+    }
+
     onMounted(() => {
       getFriendsList()
     })
@@ -131,6 +137,7 @@ export default {
       selectedList,
       subtitleText,
       selectedFriend,
+      handleCancel,
     }
   },
 }

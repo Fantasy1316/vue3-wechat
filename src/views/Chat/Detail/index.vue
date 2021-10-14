@@ -8,7 +8,15 @@
     <div class="chat-detail--input">
       <div class="input-funs">
         <p class="input-funs--item">
-          <i class="iconfont icon-biaoqing" title="表情"></i>
+          <i
+            class="iconfont icon-biaoqing"
+            title="表情"
+            @click="show = !show"
+            tabindex="2"
+            @blur="show = false"
+          >
+            <expression v-model:expressionShow="show" />
+          </i>
           <i class="iconfont icon-iconset0196" title="附件"></i>
           <i class="iconfont icon-ziyuan" title="截图"></i>
           <i class="iconfont icon-xiaoxi" title="查找聊天内容"></i>
@@ -24,10 +32,17 @@
 </template>
 
 <script>
-import { onMounted } from 'vue'
+import { onMounted, reactive, toRefs } from 'vue'
+import Expression from '@/components/Expression'
 export default {
   name: 'ChatDetail',
+  components: {
+    Expression,
+  },
   setup() {
+    const state = reactive({
+      show: false,
+    })
     const getInputEditFocus = () => {
       document.querySelector('#inputEdit').focus()
     }
@@ -37,6 +52,7 @@ export default {
     })
 
     return {
+      ...toRefs(state),
       getInputEditFocus,
     }
   },
@@ -85,7 +101,10 @@ export default {
       padding: 18px 16px 16px 16px;
 
       &--item {
+        display: flex;
+
         .iconfont {
+          position: relative;
           margin-right: 20px;
           font-size: 20px;
           color: #4b4b4b;

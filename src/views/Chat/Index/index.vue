@@ -5,7 +5,12 @@
         <search class="list-search--search" />
         <launch-group />
       </div>
-      <div id="listChat" class="list-chat">
+      <div
+        id="listChat"
+        class="list-chat"
+        tabindex="2"
+        @blur="handleMouseMenusBlur"
+      >
         <div
           class="list-chat--item"
           v-for="item in list"
@@ -32,7 +37,7 @@
       <router-view />
     </div>
 
-    <!-- 鼠标右键 -->
+    <!-- 鼠标右键菜单 -->
     <mouse-menus v-model:show="show" :top="top" :left="left" />
   </div>
 </template>
@@ -102,6 +107,10 @@ export default {
       })
     }
 
+    const handleMouseMenusBlur = () => {
+      state.show = false
+    }
+
     watch(
       () => state.show,
       (show) => {
@@ -119,6 +128,7 @@ export default {
       handleChatItemClick,
       handleItemRightClick,
       handleChatListScroll,
+      handleMouseMenusBlur,
     }
   },
 }

@@ -26,9 +26,7 @@ export default {
     left: Number,
     show: Boolean,
   },
-  setup(props) {
-    console.log(props)
-  },
+  setup() {},
 }
 </script>
 
@@ -60,15 +58,5 @@ export default {
       border-bottom: 1px solid #e6e6e6;
     }
   }
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s ease;
 }
 </style>
