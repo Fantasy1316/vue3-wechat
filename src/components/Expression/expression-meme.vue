@@ -1,24 +1,24 @@
 <template>
-  <div class="expression-emoji">
+  <div class="expression-meme">
     <div
-      class="emoji-content"
-      :class="{ 'emoji-content--action': currentIndex === 1 }"
+      class="meme-content"
+      :class="{ 'meme-content--action': currentIndex === 1 }"
     >
       <div
-        class="emoji-content--item"
-        v-for="(item, index) in emojiGroupList"
+        class="meme-content--item"
+        v-for="(item, index) in memeGroupList"
         :key="index"
       >
-        <div class="item" v-for="(emoji, index) in item" :key="index">
-          <img :src="emoji" alt="" />
+        <div class="item" v-for="(meme, index) in item" :key="index">
+          <img :src="meme" alt="" />
         </div>
       </div>
     </div>
-    <!-- <div class="emoji-indicator">
+    <!-- <div class="meme-indicator">
       <i
         class="iconfont icon-yuandianxiao"
         :class="{ 'icon-yuandianxiao--active': index === currentIndex }"
-        v-for="(item, index) in emojiGroupCount"
+        v-for="(item, index) in memeGroupCount"
         :key="index"
         @click.stop="currentIndex = index"
       ></i>
@@ -29,35 +29,30 @@
 <script>
 import { onMounted, reactive, toRefs } from 'vue'
 export default {
-  name: 'ExpressionEmoji',
+  name: 'ExpressionMeme',
   props: {
     currentIndex: Number,
   },
   setup() {
-    const EMOJI_COUNT = 114
+    const MEME_COUNT = 23
     const state = reactive({
-      allEmojiList: [],
-      emojiGroupList: [],
-      emojiGroupCount: 0,
+      allMemeList: [],
+      memeGroupList: [],
+      memeGroupCount: 0,
     })
 
     onMounted(() => {
-      for (let i = 1; i <= EMOJI_COUNT; i++) {
-        state.allEmojiList.push(
-          require(`../../../public/expression/Expression_${i}@2x.png`)
-        )
+      for (let i = 1; i <= MEME_COUNT; i++) {
+        state.allMemeList.push(require(`../../../public/meme/meme_${i}.jpg`))
       }
 
-      state.emojiGroupCount = Math.ceil(EMOJI_COUNT / 72)
-      console.log(state.emojiGroupCount)
+      state.memeGroupCount = Math.ceil(MEME_COUNT / 20)
       let start = 0
-      for (let j = 1; j <= state.emojiGroupCount; j++) {
-        let end = j * 72
-        state.emojiGroupList.push(state.allEmojiList.slice(start, end))
+      for (let j = 1; j <= state.memeGroupCount; j++) {
+        let end = j * 20
+        state.memeGroupList.push(state.allMemeList.slice(start, end))
         start = end
       }
-
-      console.log(state.emojiGroupList)
     })
 
     return {
@@ -68,13 +63,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.expression-emoji {
+.expression-meme {
   display: flex;
   flex-direction: column;
   padding: 10px 10px 0;
   overflow: hidden;
 
-  .emoji-content {
+  .meme-content {
     flex: 1;
     display: flex;
     transform: translateX(0);
@@ -86,15 +81,19 @@ export default {
 
     &--item {
       display: grid;
-      grid-template-columns: repeat(9, 1fr);
-      grid-template-rows: repeat(8, 1fr);
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+
+      &:first-child {
+        margin-right: 10px;
+      }
 
       .item {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 43px;
-        height: 44px;
+        width: 76px;
+        height: 76px;
         border-radius: 4px;
 
         &:hover {
@@ -102,8 +101,8 @@ export default {
         }
 
         img {
-          width: 22px;
-          height: 22px;
+          width: 60px;
+          height: auto;
           user-select: none;
           -webkit-user-drag: none;
         }
@@ -111,7 +110,7 @@ export default {
     }
   }
 
-  .emoji-indicator {
+  .meme-indicator {
     text-align: center;
 
     .icon-yuandianxiao {
